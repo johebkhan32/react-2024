@@ -1,4 +1,5 @@
 import { useState } from "react"
+import Test from "./test"
 
 
 function App() {
@@ -79,6 +80,7 @@ function App() {
       
         </div>
       </div>
+      <Test />
     </div>
   )
 }
