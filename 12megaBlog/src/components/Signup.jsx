@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import  {useState} from 'react'
 import authService from '../appwrite/auth'
 import { Link, useNavigate } from 'react-router-dom'
 import {Button, Input, Logo} from './index'
@@ -65,12 +65,12 @@ function Signup() {
             validate: {
                   matchPatern: (value) => /^\w+([.-]?\w+)*@\w+([.-]?\w+)*(\.\w{2,3})+$/.test(value) ||
                   "Email address must be a valid address",
-                    
-                    
          }
         })}
 
         />
+                    
+                    
 
         <Input 
         label = 'Password'
@@ -85,12 +85,6 @@ function Signup() {
         type = "submit"
         className = "w-full"
         >Create Account</Button>
-
-              
-
-
-        
-
         </div>
 
         </form>
@@ -100,3 +94,8 @@ function Signup() {
 }
 
 export default Signup
+
+              
+
+
+        

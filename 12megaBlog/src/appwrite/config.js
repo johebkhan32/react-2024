@@ -64,7 +64,7 @@ export class Service {
 
     }
 
-    async deletePos(slug) {
+    async deletePost(slug) {
         try {
             await this.databases.deleteDocument(
                 conf.appwriteDatabaseId,
@@ -74,7 +74,7 @@ export class Service {
             return true
             
         } catch (error) {
-            console.log("Appwrite service :: createPost :: error", error);
+            console.log("Appwrite service :: deletePost :: error", error);
 
             return false
         }
@@ -83,7 +83,7 @@ export class Service {
 
     async getPost(slug) {
         try {
-            return await this.getDocument(
+            return await this.databases.getDocument(
                 conf.appwriteDatabaseId, 
                 conf.appwriteCollectionId, 
                 slug
@@ -91,7 +91,7 @@ export class Service {
         
             
         } catch (error) {
-            console.log("Appwrite service :: createPost :: error", error);
+            console.log("Appwrite service :: getPost :: error", error);
             return false
 
 
@@ -109,7 +109,7 @@ export class Service {
             )
             
         } catch (error) {
-            console.log("Appwrite service :: createPost :: error", error);
+            console.log("Appwrite service :: getPosts :: error", error);
             return false
 
             
@@ -128,7 +128,7 @@ export class Service {
             )
             
         } catch (error) {
-            console.log("Appwrite service :: createPost :: error", error);
+            console.log("Appwrite service :: uploadFile :: error", error);
             return false
 
             
@@ -154,10 +154,12 @@ export class Service {
         }
     }
 
+    //view file service
+
     getFilePreview(fileId) {
         return this.bucket.getFilePreview(
             conf.appwriteBucketId,
-            fileId
+            {fileId}
 
         )
     }
