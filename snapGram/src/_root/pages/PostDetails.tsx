@@ -11,7 +11,7 @@ const PostDetails = () => {
   const {id} = useParams();
   const {user} = useUserContext();
 
-  const { data: post, isPending } = useGetPostById(id || '');
+  const { data: post, isLoading } = useGetPostById(id || '');
  
 
   const { mutate: deletePost } = useDeletePost();
@@ -23,7 +23,7 @@ const PostDetails = () => {
 
   return (
     <div className="post_details-container">
-      {isPending ? <Loader /> : (
+      {isLoading ? <Loader /> : (
         <div className="post_details-card">
           <img 
             src={post?.imageUrl}

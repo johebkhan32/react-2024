@@ -1,6 +1,7 @@
 import { INewPost, INewUser, IUpdatePost, IUpdateUser, IUpdateUserProfile } from "@/types";
 import { account, appwriteConfig, avatars, databases, storage } from "./config";
 import { ID, Query } from "appwrite";
+import { ImageGravity } from 'appwrite';
 
 export async function createUserAccount(user: INewUser) {
     try {
@@ -187,7 +188,7 @@ export async function createPost(post: INewPost) {
        fileId,
        2000,
        2000,
-       "top",
+       ImageGravity.Top,
        100,
        
      );
@@ -382,30 +383,61 @@ export async function deletePost(postId: string, imageId: string) {
 }    
 
 
-export async function getInfinitePosts({ pageParam }: { pageParam: number}) {  
-   const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(10)]
+// export async function getInfinitePosts({ pageParam }: { pageParam: number}) {  
+//    const queries: any[] = [Query.orderDesc('$updatedAt'), Query.limit(10)]
 
-   if (pageParam) {
-      queries.push(Query.cursorAfter(pageParam.toString()))
-   }
+//    if (pageParam) {
+//       queries.push(Query.cursorAfter(pageParam.toString()))
+//    }
 
-   try {
-      const posts = await databases.listDocuments(
-         appwriteConfig.databaseId,
-         appwriteConfig.postCollectionId,
-         queries
-      )
+//    try {
+//       const posts = await databases.listDocuments(
+//          appwriteConfig.databaseId,
+//          appwriteConfig.postCollectionId,
+//          queries
+//       )
 
-      if(!posts) throw Error;
+//       if(!posts) throw Error;
       
       
-      return posts
-   } catch (error) {
-      console.error(error);
+//       return posts
+//    } catch (error) {
+//       console.error(error);
       
-   }
+//    }
    
+// }
+
+export async function getInfinitePosts({ pageParam }: { pageParam?: string }) {
+  const queries: any[] = [
+    Query.orderDesc('$updatedAt'),
+    Query.limit(10), // Fetch 10 posts at a time
+  ];
+
+  // If a pageParam is present, use it as a cursor for pagination
+  if (pageParam) {
+    queries.push(Query.cursorAfter(pageParam)); // Appwrite expects the cursor to be a string
+  }
+
+  try {
+    // Fetch the documents (posts) from the Appwrite collection
+    const posts = await databases.listDocuments(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      queries
+    );
+
+    if (!posts) {
+      throw new Error('Failed to fetch posts');
+    }
+
+    return posts;
+  } catch (error) {
+    console.error('Error fetching posts:', error);
+    throw new Error('Error fetching posts');
+  }
 }
+
 
 
 
@@ -499,13 +531,13 @@ export async function updateUser(user: IUpdateUser) {
        if (!uploadedFile) throw Error;
  
        // Get new file url
-       const fileUrl = getFilePreview(uploadedFile.$id);
+       const fileUrl =  await getFilePreview(uploadedFile.$id);
        if (!fileUrl) {
          await deleteFile(uploadedFile.$id);
          throw Error;
        }
  
-       image = { ...image, imageUrl: fileUrl, imageId: uploadedFile.$id };
+       image = { ...image, imageUrl: fileUrl.toString(), imageId: uploadedFile.$id };
      }
  
 

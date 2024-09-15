@@ -2,14 +2,12 @@ import {
     useQuery,
     useMutation,
     useQueryClient,
-    // useInfiniteQuery,
 } from 'react-query'
 
 import { INewPost, INewUser, IUpdatePost, IUpdateUser, IUpdateUserProfile } from '@/types'
 import { createPost, createUserAccount, deletePost, deleteSavedPost, getCurrentUser, getInfinitePosts, getPostById, getRecentPosts, getUserById, getUserPosts, getUsers, likePost, savePost, searchPosts, signInAccount, signOutAccount, updatePost, updateUser, updateUserProfile } from '../appwrite/api'
 import { QUERY_KEYS } from './queryKeys'
 import { useInfiniteQuery } from 'react-query'
-// import { string } from 'zod'
 
 
 export const useCreateUserAccount = () => {
