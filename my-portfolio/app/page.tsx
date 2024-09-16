@@ -8,6 +8,7 @@ import { navItems } from "@/Data";
 import Experience from "@/components/Experience";
 import Approach from "@/components/Approach";
 import Footer from "@/components/Footer";
+import './globals.css';
 
 export default function Home() {
   return (
