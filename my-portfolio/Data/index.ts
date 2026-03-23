@@ -49,7 +49,7 @@ export const navItems = [
   
     {
       id: 5,
-      title: "Currently building a JS Animation library",
+      title: "Currently building a Personal AI Agent",
       description: "The Inside Scoop",
       className: "md:col-span-3 md:row-span-2",
       imgClassName: "absolute right-0 bottom-0 md:w-96 w-60",
@@ -103,6 +103,25 @@ export const navItems = [
       title: "CTO of Proactivist",
       nameImg: "/profile2.jpg",
     },
+     // SEOExpert AI Testimonial
+    {
+      quote:
+        "Joheb consistently delivered exceptional work during his time at SEOExpert AI. His technical expertise in React and TypeScript, combined with his ability to optimize performance and solve complex problems, made him invaluable to our team. His 30% performance improvement on our core application speaks to his dedication and skill. Joheb's proactive approach and collaborative spirit make him an outstanding developer who elevates any project he touches.",
+      name: "Rushabh Agarwal",
+      title: "CEO of SEOExpert AI",
+      nameImg: "/profile3.png",
+
+    },
+
+   // TELUS Digital Testimonial
+    {
+      quote:
+        "Working with Joheb at TELUS Digital has been exceptional. His meticulous attention to detail, systematic approach to data processing, and unwavering commitment to quality standards consistently exceed expectations. Joheb's ability to collaborate effectively with cross-functional teams while maintaining accuracy and adhering to technical specifications makes him a reliable and valued team member. His analytical mindset and dedication to excellence are truly commendable.",
+      name: "Rituraj Jhala",
+      title: "Operations Manager, TELUS Digital",
+      nameImg: "/profile4.png",
+
+    }
   ];
   
   export const companies = [
@@ -157,15 +176,15 @@ export const navItems = [
 
     {
       id: 3,
-      title: "Freelance - Web Dev Project",
-      desc: "Led the dev of a web app for a client, from initial concept to deployment for their online buisness.",
+      title: "SEOExpert AI - SDE-I",
+      desc: "Build end-to-end web solutions integrating React frontends with RESTful APIs, managing data persistence and ensuring system reliability.",
       className: "md:col-span-2", // change to md:col-span-2
       thumbnail: "/exp3.svg",
     },
     {
       id: 4,
-      title: "Mayora - Frontend Developer Intern",
-      desc: "Developed and maintained user-facing features using modern frontend technologies. Also develop front-end components using React.js and Javascript.",
+      title: "Telus Digital - Data Analyst",
+      desc: "Process and analyze large-scale datasets applying systematic methodologies and quality assurance practices.",
       className: "md:col-span-2",
       thumbnail: "/exp4.svg",
     },
